@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+</head>
+
+</html>
+
+<body>
+
+    <div id="app">
+        <div>计算器：{{count}}</div>
+        <button @click='add'>+</button>
+        <button @click='sub'>-</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'vue 初体验',
+                count: 0
+
+            },
+            methods:{
+                add:function(){
+                    this.count++;
+                },
+                sub:function(){
+                    this.count--;
+                }
+            }
+
+        });
+    </script>
+
+</body>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+</head>
+
+</html>
+
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in movie">{{item}}</li>
+        </ul>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                message:'vue 初体验',
+                movie:['少年派','珍珠港','海王','少林足球']
+                
+            }
+
+    });
+    </script>
+
+</body>
