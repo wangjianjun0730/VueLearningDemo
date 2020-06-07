@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态绑定</title>
+    
+</head>
+<body>
+
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+
+    <div id="app">
+        <h1 v-bind:class="getClass()">海贼王</h1>
+        <ul v-for="(item,index) in movies">
+            <li @click="changeColor(index)" :class="getClass(item.seleced)">{{item.name}}</li>
+        </ul>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                isActive:true,
+                isLine:true,
+                movies:[
+                    {name:"蓝猫",seleced:true},
+                    {name:"蓝精灵",seleced:false},
+                    {name:"黑猫警长",seleced:false},
+                    {name:"舒克和贝塔",seleced:false}],
+                seleced:true
+            },
+            methods:{
+                getClass:function(seleced){
+                    console.log("====>getClass" + seleced)
+                    return {"active":seleced};
+                },
+                changeColor:function(selectedIndex){
+                    let arr = this.movies;
+                    let newArr = [];
+                    arr.map(function(value,index){
+                        // console.log("==>" + JSON.stringify(array));
+                        if(selectedIndex == index){
+                            value.seleced = true;
+                        }else{
+                            value.seleced = false;
+                        }
+                        newArr.push(value);
+                    })
+                    console.log("==>" + JSON.stringify(newArr));
+                    this.movies = newArr;
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>
