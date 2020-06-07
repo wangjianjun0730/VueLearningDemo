@@ -1,0 +1,11 @@
+生命周期函数：
+
+beforeCreate:
+created:
+beforeMounted:
+mounted:
+
+update:
+beforeDestroy:
+destroy:
+
