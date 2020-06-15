@@ -6,12 +6,34 @@
   </head>
 </html>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <h1>{{fullName}}</h1>
+    <h1>{{fullName}}</h1>
+    <h1>{{fullName}}</h1>
+    <h1>{{fullName}}</h1>
+
+
+
+  </div>
   <script src="../js/vue.js"></script>
   <script>
+    /**
+     * 计算属性，用于计算的钩子。
+     * 1.定义函数时，不用加动词，类似一个属性名。不需要加小括号
+     * 2.计算属性的缓存
+     * 
+     * */
     var app = new Vue({
       el: "#app",
-      data: {},
+      data: {
+        firstName:'科比',
+        lastName:'布莱恩特'
+      },
+      computed:{
+        fullName:function(){
+          return this.firstName +'-'+ this.lastName
+        }
+      }
     });
   </script>
 </body>

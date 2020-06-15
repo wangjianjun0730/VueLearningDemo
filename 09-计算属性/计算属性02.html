@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Title</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <h1>{{propName}}</h1>
+        <h1>{{propName1}}</h1>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /**
+         * 计算属性缓存
+         * 
+         * 
+        */
+        var app = new Vue({
+            el: '#app',
+            data: {
+                firstName:'',
+                lastName:''
+            },
+            computed: {
+                propName: {
+                    //set方法一般不常用，所以简写成propName1的形式
+                    set:function(newValue){
+                        const names = newValue.split(' ');
+                        this.firstName = names[0];
+                        this.lastName = names[1];
+                        console.log("this.firstName:"+ this.firstName);
+                        console.log("this.lastName:"+ this.lastName);
+                        
+                    },
+                    //可以
+                    get:function(){
+                        console.log("this.firstName1 = " + this.firstName);
+                        console.log("this.lastName1 = " + this.lastName);
+                        
+                        return this.firstName + this.lastName;
+                    }
+                },
+                propName1:function(){
+                    return this.firstName + this.lastName + 'propname1';
+                }
+            }
+        });
+    </script>
+</body>

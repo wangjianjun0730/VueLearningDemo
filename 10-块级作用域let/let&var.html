@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Title</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /***
+         * 块级作用域
+         * ES5：（）
+         * 1.ES5之前if和for没有会稽作用域的概念，很多时候必须依赖于function的作用域来解决外面变量的问题
+         * 2.var是没有if和for的块级作用域的，只有function有块级作用域
+         * 
+         * ES6：
+         * let是有if和for的块级作用域的，
+         * 
+        */
+
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            computed: {
+                propName: function () {
+                }
+            }
+        });
+    </script>
+</body>
