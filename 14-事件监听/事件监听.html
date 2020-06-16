@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>事件监听</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <button v-on:click='increment'>increment</button>
+        <button v-on:click='decrement'>decrement</button>
+    </div>
+
+    <script src='../js/vue.js'></script>
+    <script>
+        //1.事件监听 v-on及参数 （变量,$event）
+        //2.事件监听 v-on  修饰符 (阻止事件冒泡）
+        /**
+        2.1 v-on:click.stop  / @click.stop  
+        2.2 v-on:click.prevent /  @click.prevent 阻止默认事件
+        2.3 v-on:keyup.enter / @keyup.enter 监听键盘回车键抬起事件
+        2.4 .native - 监听组件根元素的原生事件
+        2.5 .once - 只
+
+        **/
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            computed: {
+                propName: function () {
+                }
+            },
+            methods:{
+                increment(){
+                    console.log("点击了increment");
+                },
+                decrement(){
+                    console.log("点击了decrement");
+                }
+            }
+        });
+    </script>
+</body>

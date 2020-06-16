@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>字面量增强写法</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        //------ 对象的增强写法
+        
+        const name = 'wang';
+        const age = '18';
+        const gender = '男';
+        //ES5写法
+        let obj = {
+            name:name,
+            age:age,
+            gender:gender
+        }
+
+        console.log("obj"+ JSON.stringify(obj));
+        //ES6增强写法:直接简写成对应的
+        let obj1 = {
+            name,
+            age,
+            gender
+        }
+        console.log("obj1"+ JSON.stringify(obj1));
+
+        //------ 函数的增强写法
+        let func1 = {//一般写法
+            test:function(){
+                console.log("函数的一般写法");
+            }
+        }
+
+        let func2 = {
+            test(){
+                console.log("函数的增强写法");
+            }
+        }
+
+        func1.test();
+        func2.test();
+
+    </script>
+
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            computed: {
+                propName: function () {
+                }
+            }
+        });
+    </script>
+</body>

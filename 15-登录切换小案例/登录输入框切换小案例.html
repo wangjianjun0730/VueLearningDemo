@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Title</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <span v-if="isAccount" key="account">
+            <label>密码</label>
+            <input type="text" placeholder="密码"></input>
+        </span>
+        <span v-else key="mail">
+            <label>邮箱</label>
+            <input type="text" placeholder="邮箱"></input>
+        </span>
+        <button @click="change">切换类型</button>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /**
+        本节要点:
+        1.input复用问题：虚拟DOM，在渲染前通过虚拟DOM放到内存中，出于性能考虑会复用span节点树（因为他们结构相同且不会同时显示在界面上）
+        2.加key属性，作为标识，防止复用
+        */
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isAccount:true
+            },
+            methods:{
+                change(){
+                    this.isAccount = !this.isAccount;
+                }
+            }
+
+        });
+    </script>
+</body>
