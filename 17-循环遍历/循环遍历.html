@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>循环遍历</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <ul>
+            <li v-for="(item,index) in names">{{index}}{{item}}</li>
+        </ul>
+        <button @click="options">按钮</button>
+    </div>
+    <script src='../js/vue.js'></script>
+    <script>
+        /**
+            1/ 
+        */
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                names:["A","B","C","D"]
+            },
+            computed: {
+                propName: function () {
+                }
+            },
+            methods:{
+                options(){
+                    //添加元素
+                    this.names.push("aaa");
+                    //替换
+                    this.names.splice(1,3,"aaa");
+                    //
+                    this.names.sort();
+                    //翻转
+                    this.names.reverse();
+
+                    //-------上面都是响应式的
+                    //-------下面不是响应式的
+                    this.names[0] = '';//不是响应式的
+
+
+                    //下面xia
+                    Vue.set();
+                }
+
+            }
+        });
+    </script>
+</body>
