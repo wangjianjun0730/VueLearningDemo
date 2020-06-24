@@ -1,0 +1,4 @@
+
+1.   v-model.lazy    点回车才会显示在输入框
+2.   v-model.number  强制转化number类型
+3.   v-model.trim    去掉input输入框空格
