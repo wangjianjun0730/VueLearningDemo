@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Title</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <myCpm></myCpm>
+    </div>
+
+    
+    <template id="tmp2">
+        <div>
+            <h1>组件-抽离方式2</h1>
+            <p>我额组件抽离方式2</p>
+        </div>
+    </template>
+
+
+    <!-- 模板的抽离方式1 -->
+    <script type="text/x-template" id="tem">
+        <div>
+            <h1>组件-抽离方式1</h1>
+            <p>我额组件抽离方式1</p>
+        </div>
+    </script>
+
+    <script src='../../js/vue.js'></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            components:{
+                "myCpm":{
+                    template:'#tem'
+                }
+            },
+            data: {
+            },
+            computed: {
+                propName: function () {
+                }
+            }
+        });
+    </script>
+</body>
