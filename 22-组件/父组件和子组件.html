@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+  </head>
+</html>
+<body>
+  <div id="app">
+    <cpn1></cpn1>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+      /**
+        父子组件：
+        1.需要注意顺序  cpnC2 cpnC1加载顺序
+        2.template需要根<div><div>包裹
+        3.子组件需在父组件中注册，如果只在父组件中注册，外界无法使用，其作用域仅限父组件
+        
+        
+      */
+
+
+
+    const cpnC2 = Vue.extend({
+      template: `
+        <div>
+            <h2>组件2</h2>
+            <div>我这是个组件2</div>
+        </div>
+        `,
+    });
+
+    const cpnC1 = Vue.extend({
+      template: `
+      <div>
+        <h2>组件1</h2>
+            <div>我这个是组件1</div>
+            <cpn2></cpn2>
+      </div>
+            
+        `,
+      components: {
+        cpn2: cpnC2,
+      },
+    });
+
+    var app = new Vue({
+      el: "#app",
+      data: {},
+      components: {
+        cpn1: cpnC1,
+      },
+    });
+  </script>
+</body>

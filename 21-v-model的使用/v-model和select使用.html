@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+  </head>
+</html>
+<body>
+  <div id="app">
+    <select name="abc" v-model="place">
+        <option value="北京">北京</option>
+        <option value="武汉">武汉</option>
+        <option value="福州">福州</option>
+        <option value="上海">上海</option>
+    </select>
+    <div>你最想去的城市是：{{place}}</div>
+
+  </div>
+  <script src="../js/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        place:'',
+        places:[]
+      },
+    });
+  </script>
+</body>
