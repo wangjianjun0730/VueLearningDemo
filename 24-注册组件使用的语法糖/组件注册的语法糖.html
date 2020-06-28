@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>注册组件的语法糖</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <cpn1></cpn1>
+
+
+    </div>
+
+    <script src='../js/vue.js'></script>
+    <script>
+
+        // const cpnC1 = Vue.extend({
+        //     template:`
+        //         <div>
+        //             <h1>组件1</h1>
+        //             <p>这是我的组件1</p>
+        //         </div>
+        //     `
+        // }) 
+
+        //组件注册的语法糖
+        Vue.component('cpn1',{
+            template:`
+                <div>
+                    <h1>组件1</h1>
+                    <p>这是我的组件1</p>
+                </div>
+            `
+        })
+
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            computed: {
+                propName: function () {
+                }
+            }
+        });
+    </script>
+</body>
