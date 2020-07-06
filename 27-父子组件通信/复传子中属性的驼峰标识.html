@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Title</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <div >
+            <cmp @item-click="cmpClick"></cmp>
+        </div>
+    </div>
+
+    <template id="cmp">
+        <div>
+            <button v-for="item in categraies" @click="btnClick(item)">
+                {{item.name}}
+            </button>
+        </div>
+    </template>
+
+
+
+    <script src='../js/vue.js'></script>
+    <script>
+
+        const cmp = {
+            template: "#cmp",
+            data() {
+                return {
+                    categraies: [
+                        { id: 'aaa', name: '热门' },
+                        { id: 'bbb', name: '手机' },
+                        { id: 'ccc', name: '家电' },
+                        { id: 'ddd', name: '办公' },
+                    ]
+                }
+            },
+            methods:{
+                btnClick(e){
+                    console.log(JSON.stringify(e));
+                    this.$emit("item-click",e); //这里需要注意驼峰，无效
+                }
+            }
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            components: {
+                cmp
+            },
+            methods: {
+                cmpClick(e){
+                    console.log("=====> " + JSON.stringify(e));
+                }
+            }
+        });
+    </script>
+</body>
