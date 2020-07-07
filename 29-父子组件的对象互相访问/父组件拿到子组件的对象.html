@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>父组件拿到子组件的对象</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <cmp></cmp>
+        <cmp ref="aaa"></cmp>
+        <cmp></cmp>
+        <button @click="btnClick">按钮</button>
+    </div>
+
+    <template id="mycmp">
+        <div>
+            我是子组件
+        </div> 
+    </template>
+    <script src='../js/vue.js'></script>
+    <script>
+        /**
+            1.父组件访问子组件：
+            $refs:      通过在子组件上定义属性ref="" 可以精准的获取到子组件
+            $children:  拿到的是子组件数组，需要遍历通过角标获取，不常用
+
+            2.子组件访问父组件：$parent //用得不多
+
+            3.访问根组件 ： this.$root //获取根组件
+
+        */
+
+        const cmp = {
+            template:"#mycmp"
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            components:{
+                cmp
+            },
+            methods:{
+                btnClick(){
+                    console.log(this.$children); //获取到的是个数组
+                    console.log(this.$refs.aaa); //获取到的就是ref='aaa'的组件对象
+                }
+            }
+        });
+    </script>
+</body>
