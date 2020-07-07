@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>28父子组件通信案例</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <h3>{{num1}}</h3>
+        <h3>{{num2}}</h3>
+        <cmp :number1="num1" :number2="num2" @changeinput1="numberChange1" @changeinput2="numberChange2"/>
+    </div>
+
+
+    <template id="mycmp">
+        <div>
+            <!-- 1.直接双向绑定属性 : ****** 直接双向绑定到属性值上，修改属性值会报错！！! 不建议直接更改属性值，Vue建议更改data或者计算属性-->
+            <!-- <h2>{{number1}}</h2>
+            <input type="text" v-model="number1">
+            <h2>{{number2}}</h2>
+            <input type="text" v-model="number2"> -->
+
+            <!-- 2.双向绑定到data或者计算属性 -->
+            <!-- <h2>{{dnumber1}}</h2>
+            <input type="text" v-model="dnumber1">
+            <h2>{{dnumber2}}</h2>
+            <input type="text" v-model="dnumber2"> -->
+
+            <!-- 3.子组件数据传递到父组件 -->
+            <h2>{{dnumber1}}</h2>
+                <!-- 双向绑定的实现：   :vaue=   @input=  -->
+            <input type="text" :value="dnumber1" @input="inputNum1"> 
+            <h2>{{dnumber2}}</h2>
+            <input type="text" :value="dnumber2" @input="inputNum2">
+            <!-- <h2>{{dnumber1}}</h2>
+            <input type="text" @input="inputNum1">
+            <h2>{{dnumber2}}</h2>
+            <input type="text" @input="inputNum2"> -->
+
+        </div>
+    </template>
+
+    <script src='../js/vue.js'></script>
+    <script>
+
+        const cmp = {
+            template:"#mycmp",
+            data(){
+                return{
+                    dnumber1:this.number1,
+                    dnumber2:this.number2
+                }
+            },
+            props:{
+                number1:Number,
+                number2:Number
+            },
+            methods:{
+                inputNum1(event){
+                    console.log(JSON.stringify(event.target.value));
+                    this.dnumber1 =  event.target.value;
+                    this.$emit("changeinput1",event.target.value);
+                },
+                inputNum2(event){
+                    console.log(JSON.stringify(event.target.value));
+                    this.dnumber2 =  event.target.value;
+                    this.$emit("changeinput2",event.target.value);
+                }
+            }
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num1:1,
+                num2:2
+            },
+            components:{
+                cmp
+            },
+            methods:{
+                numberChange1(num){
+                    this.num1 = parseInt(num);
+                    console.log("numberChange1:",this.num1);
+
+
+
+                },
+                numberChange2(num){
+                    this.num2 = parseInt(num);
+                    console.log("numberChange2:",this.num2);
+                }
+            }
+        });
+    </script>
+</body>
