@@ -1,45 +1,52 @@
 <!DOCTYPE html>
-<html lang='en'>
-
-<head>
-    <meta charset='utf-8' />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
     <title>组件内部如何访问Vue实例的数据吗</title>
-</head>
-
+  </head>
 </html>
 
 <body>
-    <div id='app'>
-        <my-cmp></my-cmp>
-
-    </div>
-    <!-- <template id="mycpm">
+  <div id="app">
+    <my-cmp></my-cmp>
+    <my-cmp></my-cmp>
+    <my-cmp></my-cmp>
+    <my-cmp></my-cmp>
+    <my-cmp2></my-cmp2>
+  </div>
+  <!-- <template id="mycpm">
         <div>
             <h1>组件1</h1>
             <p>我的组件1</p> -->
-            <!-- 这里的title数据是 通过组件内部data函数返回的数据对象获取的 -->
-            <!-- <p>{{title}}</p>
+  <!-- 这里的title数据是 通过组件内部data函数返回的数据对象获取的 -->
+  <!-- <p>{{title}}</p>
         </div>
     </template> -->
 
-    
-    <template id="">
-        <div>
-            <h2>当前技术：{{conuter}}</h2>
-            <button @click="increament">+</button>
-            <button @click="decrement">-</button>
-        </div>
-    </template>
+  <!-- 第1种方式 -->
+  <template id="mycpm">
+    <div>
+      <h2>当前计数：{{conuter}}</h2>
+      <button @click="increament">+</button>
+      <button @click="decrement">-</button>
+    </div>
+  </template>
 
+  <!-- 第2种方式 -->
+  <script id="cpm2" type="text/x-template">
+    <div>
+        <h1>组件-抽离方式2</h1>
+        <p>{{title}}</p>
+    </div>
+  </script>
 
-    <script src='../js/vue.js'></script>
-    <script>
-
-        //1.组件内部是不能访问Vue实例的
-        //2.组件内部有个data属性，也可以有methods属性以及生命周期函数
-        //3.组件的data属性必须是一个函数且这个函数返回一个对象，对象内部保存着数据
-        //4.为什么data必须是个函数：
-        /**
+  <script src="../js/vue.js"></script>
+  <script>
+    //1.组件内部是不能访问Vue实例的
+    //2.组件内部有个data属性，也可以有methods属性以及生命周期函数
+    //3.组件的data属性必须是一个函数且这个函数返回一个对象，对象内部保存着数据
+    //4.为什么data必须是个函数：
+    /**
         4.1 
         4.2
         4.3
@@ -47,27 +54,51 @@
         4.5
         */
 
-        Vue.component('my-cmp-new',{
-            template:{
+    Vue.component("my-cmp2", {
+      template: "#cpm2",
+      data() {
+        return {
+          title: "这是组件2的计数器",
+          conuter: 0,
+        };
+      },
+      methods: {
+        increament() {
+          this.conuter += 1;
+        },
+        decrement() {
+          this.conuter -= 1;
+        },
+      },
+    });
 
-            }
-        })
-
-
-        var app = new Vue({
-            el: '#app',
-            data: {
+    var app = new Vue({
+      el: "#app",
+      data: {
+        conuter: 0,
+      },
+      components: {
+        "my-cmp": {
+          template: "#mycpm",
+          data() {
+            return {
+              title: "这是组件的数据，不是Vue实例的",
+              conuter: 0,
+            };
+          },
+          methods: {
+            increament() {
+              this.conuter += 1;
             },
-            components: {
-                'my-cmp': {
-                    template: '#mycpm',
-                    data() {
-                        return {
-                            title:'这是组件的数据，不是Vue实例的'
-                        }
-                    }
-                }
-            }
-        });
-    </script>
+            decrement() {
+              this.conuter -= 1;
+            },
+          },
+        },
+      },
+      methoeds: {
+        increament() {},
+      },
+    });
+  </script>
 </body>
