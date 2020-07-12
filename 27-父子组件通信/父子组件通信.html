@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Title</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <!-- <my-cmp1></my-cmp1>
+        <my-cmp2></my-cmp2> -->
+        
+        <!-- <cpm :cmoives="moivces" :cmessage="messages"></cpm> -->
+        <cpm :cmoives="moivces"></cpm>
+
+    </div>
+
+    <script type="text/x-template" id="mycmp2">
+        <div>
+            <ul v-for="item in cmoives">
+                <li>{{item}}</li>
+            </ul>            
+            <p>{{cmessage}}</p>
+        </div>
+    </script>
+
+
+
+    <script src='../js/vue.js'></script>
+    <script>
+
+        const cpm = {
+            template: "#mycmp2",
+            //类型限制
+            props: {
+                cmoives:{
+                    type:Array,
+                    default:function(){
+                        return []
+                    },//Object和Array类型 默认值要用function形式
+                    require:true
+
+                },
+                cmessage:{
+                    type:String,
+                    default:"adaadawd "//设置默认值
+                }
+            },
+            // props:["cmoives","cmessage"],
+            data() {
+                return {}
+            }
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                messages:"这个message是给子控件的",
+                moivces:["海贼王","冒险王","查理王"]
+            },
+            components: {
+                cpm
+            }
+        });
+    </script>
+</body>

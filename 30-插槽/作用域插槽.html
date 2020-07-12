@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>作用域插槽</title>
+</head>
+
+</html>
+
+<template id="mycmp">
+    <div>
+        <p>下面展示的内容</p>
+        <slot name="scope-slot" :datas="movies"></slot>
+    </div>
+</template>
+
+<body>
+    <div id='app'>
+        <cmp>
+            <!-- 域插槽 -->
+            <template slot="scope-slot" slot-scope="scope">
+                <span v-for="item in scope.datas">
+                    {{item}}
+                </div>
+            </template>
+        </cmp>
+        <br/>
+        <cmp>
+            <!-- 域插槽:显示 -->
+            <template slot="scope-slot" slot-scope="scope">
+                <!-- 通过slot-scope属性获取到组件内部的数据，以赋予插槽 自定义不同的效果展示 -->
+                <div v-for="item in scope.datas">
+                    {{item}}
+                </div>
+            </template>
+        </cmp>
+    </div>
+
+    
+
+    <script src='../js/vue.js'></script>
+    <script>
+
+        const cmp = {
+            template:"#mycmp",
+            props:{
+
+            },
+            data(){
+                return {
+                    movies:['康熙王朝','雍正王朝','大明王朝','走向共和']
+                }
+            }
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            components:{
+                cmp
+            }
+            
+        });
+    </script>
+</body>

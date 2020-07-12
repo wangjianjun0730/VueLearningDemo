@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8' />
+    <title>1.插槽简单实用和具名插槽</title>
+</head>
+
+</html>
+
+<body>
+    <div id='app'>
+        <cmp>
+            <!-- 2.在这里通过slot属性，传入插槽名称，精准找到指定插槽 -->
+            <button slot="first-slot">按钮</button>
+        </cmp>
+    </div>
+
+    <template id="mycmp">
+        <div>
+            <h4>组件</h4>
+            <p>就是这个组件</p>
+            <!-- 1.在插槽中定义一个name属性名称 -->
+            <!-- 3.如果不定义name属性，那么 -->
+            <slot name="first-slot"></slot> 
+        </div>
+    </template>
+
+    <script src='../js/vue.js'></script>
+    <script>
+
+        const cmp = {
+            template:"#mycmp",
+            data(){
+                return {
+
+                }
+            }
+        }
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+            components:{
+                cmp
+            }                
+        });
+    </script>
+</body>
