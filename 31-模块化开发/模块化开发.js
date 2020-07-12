@@ -17,4 +17,27 @@
   * 2.ES6的模块化（导入和导出）
   * 3.CMD模块化
   * 4.AMD模块化
+  * 
+  * 
+  * ---------------------------
+  * 1.commonJS的导入和导出
+  * 导出:
+  * moudle.exports = {
+  *     var flag = false;
+  *     test(a,b){
+  *         return a+b;
+  *     }    
+  * }
+  * 
+  * 导入:
+  * let { test , demo , flag } = require('moudleA'); 
+  * 
+  * ---------------------------
+  * 2.ES6
+  * 导出:
+  * 
+  * 
+  * 
+  * 
  */
+
